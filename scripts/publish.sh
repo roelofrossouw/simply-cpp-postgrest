@@ -2,7 +2,7 @@
 #~~~~~~~~~~
 # Downloads the pinned PostgREST release (its official static Linux build), checks it against
 # SHA256.txt, packages it as the simply-cpp-postgrest .deb, and publishes it into the apt repo for
-# every distribution. The binary is statically linked, so one build covers jammy/noble/resolute
+# every distribution. The binary is statically linked, so one build covers noble/resolute
 # alike - run this on any one build server (deploy.sh defaults to build-noble).
 #
 # Run this in the directory deploy.sh synced it to (/var/www/build/sc-postgrest).
@@ -76,7 +76,8 @@ dpkg-deb --build --root-owner-group pkg "$deb_file"
 
 pushd /var/www/build/repo >/dev/null
 export GNUPGHOME=/var/www/build/signing
-for dist in jammy noble resolute; do
+# jammy left the default distributions 2026-11-18 (Roelof); SC_DISTS="jammy" publishes there on demand.
+for dist in ${SC_DISTS:-noble resolute}; do
     if reprepro list "$dist" | grep -q "$package .*$package_version"; then
         echo "$dist: $package $package_version already published"
     else

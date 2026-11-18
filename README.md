@@ -17,7 +17,7 @@ postgrest --version
 ```
 
 It installs `/usr/bin/postgrest` and PostgREST's licence. The binary is statically linked, so the
-same package serves jammy, noble and resolute. It brings no configuration or service: run it with
+same package serves noble and resolute (jammy on demand). It brings no configuration or service: run it with
 your own configuration file (`postgrest /etc/postgrest.conf`) under whatever starts it.
 
 ## The version
@@ -33,7 +33,7 @@ asset on [the releases page](https://github.com/PostgREST/postgrest/releases)) a
 that file's SHA-256, commit, then:
 
 ```bash
-scripts/deploy.sh          # publishes to jammy/noble/resolute in one shot
+scripts/deploy.sh          # publishes to noble/resolute in one shot
 ```
 
 The suite's `scripts/publish.sh` does the same for it, as for every module. The same version
